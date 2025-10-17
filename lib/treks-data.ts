@@ -1,0 +1,418 @@
+import { Trek } from '@/types';
+
+export const TREKS: Trek[] = [
+  {
+    id: '1',
+    slug: 'langtang-trek',
+    name: 'Langtang Trek',
+    tagline: 'Experience the pristine beauty of the Langtang Valley',
+    duration: '7-10 days',
+    durationDays: 8,
+    difficulty: 'Moderate',
+    maxAltitude: '4,984m (Tserko Ri)',
+    maxAltitudeMeters: 4984,
+    bestSeason: 'March-May, September-November',
+    overview: [
+      'The Langtang Trek is one of Nepal\'s most beautiful and accessible treks, offering stunning mountain views, diverse landscapes, and rich cultural experiences. Located north of Kathmandu, this trek takes you through the Langtang National Park, home to red pandas, Himalayan black bears, and diverse flora.',
+      'Journey through rhododendron forests, cross traditional Tamang villages, and witness breathtaking views of Langtang Lirung, Ganesh Himal, and other peaks. The trek offers a perfect blend of natural beauty and cultural immersion without the crowds of more popular routes.',
+      'The highlight is reaching Tserko Ri (4,984m) or Kyanjin Ri for panoramic mountain vistas. This trek is ideal for those seeking an authentic Himalayan experience with moderate difficulty and incredible value.',
+    ],
+    highlights: [
+      'Spectacular views of Langtang Lirung (7,227m) and Ganesh Himal range',
+      'Explore the traditional Tamang villages and Buddhist monasteries',
+      'Witness diverse wildlife in Langtang National Park',
+      'Summit Tserko Ri or Kyanjin Ri for panoramic Himalayan views',
+      'Experience authentic yak cheese factories in Kyanjin Gompa',
+      'Walk through enchanting rhododendron and bamboo forests',
+      'Interact with friendly Tamang and Sherpa communities',
+    ],
+    itinerary: 'The trek typically starts with a scenic drive from Kathmandu to Syabrubesi. From there, you ascend through Lama Hotel, Langtang Village, and reach Kyanjin Gompa. The route includes acclimatization days for summit attempts of Tserko Ri or Kyanjin Ri before retracing the path back to Syabrubesi.',
+    included: [
+      'Experienced trekking guide',
+      'Porter service (2:1 ratio)',
+      'All meals during trek',
+      'Teahouse accommodation',
+      'Langtang National Park permit',
+      'TIMS card',
+      'First aid kit',
+      'Guide and porter insurance, meals, accommodation',
+    ],
+    excluded: [
+      'Transportation to/from Syabrubesi',
+      'Meals in Kathmandu',
+      'Travel insurance',
+      'Personal expenses',
+      'Tips for guide and porters',
+      'Emergency evacuation',
+    ],
+    images: {
+      hero: '/images/treks/langtang-hero.jpg',
+      gallery: [
+        '/images/treks/langtang-1.jpg',
+        '/images/treks/langtang-2.jpg',
+        '/images/treks/langtang-3.jpg',
+        '/images/treks/langtang-4.jpg',
+      ],
+    },
+    featured: true,
+  },
+  {
+    id: '2',
+    slug: 'annapurna-base-camp',
+    name: 'Annapurna Base Camp Trek',
+    tagline: 'Stand at the heart of the Annapurna Sanctuary',
+    duration: '7-12 days',
+    durationDays: 10,
+    difficulty: 'Moderate',
+    maxAltitude: '4,130m',
+    maxAltitudeMeters: 4130,
+    bestSeason: 'March-May, September-November',
+    overview: [
+      'The Annapurna Base Camp (ABC) Trek is one of the most popular and rewarding treks in Nepal. This incredible journey takes you into the heart of the Annapurna Sanctuary, surrounded by towering peaks including Annapurna I (8,091m), Machapuchare (6,993m), and Hiunchuli.',
+      'Trek through diverse landscapes from lush subtropical forests to high alpine terrain. Pass through charming Gurung villages, terraced rice fields, and rhododendron forests before entering the dramatic Modi Khola gorge that leads to the base camp.',
+      'Standing at Annapurna Base Camp at 4,130m is a truly magical experience, with 360-degree views of some of the world\'s highest peaks surrounding you in an amphitheater of snow and ice.',
+    ],
+    highlights: [
+      '360-degree views of Annapurna massif from the base camp',
+      'Close-up views of the sacred Machapuchare (Fishtail) mountain',
+      'Experience diverse ecosystems from subtropical to alpine',
+      'Visit traditional Gurung and Magar villages',
+      'Soak in natural hot springs at Jhinu Danda',
+      'Walk through magical rhododendron forests',
+      'Sunrise views from ABC are unforgettable',
+    ],
+    itinerary: 'Starting from Pokhara, the trek typically goes through Nayapul, Ghandruk, Chomrong, Bamboo, Deurali, and finally ABC. The return journey can include a detour to Jhinu Danda for hot springs. Most itineraries allow for proper acclimatization and can be customized based on your pace.',
+    included: [
+      'Experienced trekking guide',
+      'Porter service (2:1 ratio)',
+      'All meals during trek',
+      'Teahouse accommodation',
+      'Annapurna Conservation Area Permit (ACAP)',
+      'TIMS card',
+      'First aid kit',
+      'Guide and porter insurance, meals, accommodation',
+    ],
+    excluded: [
+      'Transportation to/from Pokhara',
+      'Meals in Pokhara',
+      'Travel insurance',
+      'Personal expenses',
+      'Tips for guide and porters',
+      'Hot spring entry fee',
+    ],
+    images: {
+      hero: '/images/treks/abc-hero.jpg',
+      gallery: [
+        '/images/treks/abc-1.jpg',
+        '/images/treks/abc-2.jpg',
+        '/images/treks/abc-3.jpg',
+        '/images/treks/abc-4.jpg',
+      ],
+    },
+    featured: true,
+  },
+  {
+    id: '3',
+    slug: 'annapurna-circuit',
+    name: 'Annapurna Circuit Trek',
+    tagline: 'The ultimate Himalayan adventure circuit',
+    duration: '12-18 days',
+    durationDays: 15,
+    difficulty: 'Challenging',
+    maxAltitude: '5,416m (Thorong La Pass)',
+    maxAltitudeMeters: 5416,
+    bestSeason: 'March-May, September-November',
+    overview: [
+      'The Annapurna Circuit is considered one of the world\'s greatest treks, offering unparalleled diversity of landscapes, cultures, and experiences. This epic journey circumnavigates the entire Annapurna massif, crossing from the lush subtropics to the high desert plateau beyond the Himalayas.',
+      'You\'ll cross the challenging Thorong La Pass at 5,416m, one of the highest trekking passes in the world. The route showcases dramatic changes in scenery, from rice paddies and rhododendron forests to barren high-altitude landscapes reminiscent of Tibet.',
+      'Experience the incredible cultural diversity of Nepal, passing through Hindu villages in the lowlands, Buddhist communities influenced by Tibetan culture in the higher regions, and visit ancient monasteries and sacred sites along the way.',
+    ],
+    highlights: [
+      'Cross the spectacular Thorong La Pass at 5,416m',
+      'Witness incredible landscape diversity from subtropical to alpine desert',
+      'Explore the sacred pilgrimage site of Muktinath',
+      'Experience both Hindu and Buddhist cultural traditions',
+      'Visit traditional villages of Manang and Kagbeni',
+      'Marvel at close-up views of Annapurna, Dhaulagiri, and Manaslu ranges',
+      'Discover ancient monasteries and prayer flags adorning the trail',
+    ],
+    itinerary: 'The classic route starts from Besisahar or Bhulbhule and proceeds through Chame, Pisang, Manang (acclimatization), High Camp, Thorong La Pass, Muktinath, Jomsom, and can end at Nayapul or include the Annapurna Base Camp extension. The circuit can be done in either direction, though counter-clockwise is most common.',
+    included: [
+      'Experienced trekking guide',
+      'Porter service (2:1 ratio)',
+      'All meals during trek',
+      'Teahouse accommodation',
+      'ACAP and TIMS permits',
+      'First aid kit',
+      'Guide and porter insurance, meals, accommodation',
+    ],
+    excluded: [
+      'Transportation to Besisahar and from Nayapul/Jomsom',
+      'Meals in Kathmandu/Pokhara',
+      'Travel insurance',
+      'Personal expenses',
+      'Tips for guide and porters',
+      'Emergency evacuation',
+    ],
+    images: {
+      hero: '/images/treks/circuit-hero.jpg',
+      gallery: [
+        '/images/treks/circuit-1.jpg',
+        '/images/treks/circuit-2.jpg',
+        '/images/treks/circuit-3.jpg',
+        '/images/treks/circuit-4.jpg',
+      ],
+    },
+    featured: true,
+  },
+  {
+    id: '4',
+    slug: 'everest-base-camp',
+    name: 'Everest Base Camp Trek',
+    tagline: 'Journey to the foot of the world\'s highest mountain',
+    duration: '12-14 days',
+    durationDays: 13,
+    difficulty: 'Challenging',
+    maxAltitude: '5,545m (Kala Patthar)',
+    maxAltitudeMeters: 5545,
+    bestSeason: 'March-May, September-November',
+    overview: [
+      'The Everest Base Camp Trek is the ultimate bucket-list adventure for trekkers worldwide. This iconic journey takes you into the heart of the Khumbu region, home to the legendary Sherpa people and the world\'s highest peaks including Mount Everest (8,849m).',
+      'Follow in the footsteps of legendary mountaineers as you trek through Sagarmatha National Park, a UNESCO World Heritage Site. The route offers spectacular mountain views, ancient Buddhist monasteries, suspension bridges over roaring rivers, and the unique Sherpa culture of the high Himalayas.',
+      'The trek culminates at Everest Base Camp (5,364m) and Kala Patthar (5,545m), where you\'ll witness unforgettable sunrise views of Mount Everest, Lhotse, Nuptse, and countless other Himalayan giants.',
+    ],
+    highlights: [
+      'Stand at Everest Base Camp, the starting point for summit expeditions',
+      'Sunrise views of Mt. Everest from Kala Patthar viewpoint',
+      'Explore the vibrant Sherpa capital of Namche Bazaar',
+      'Visit the famous Tengboche Monastery with its panoramic mountain views',
+      'Experience authentic Sherpa culture and hospitality',
+      'Cross thrilling suspension bridges over the Dudh Koshi River',
+      'Fly into Lukla, one of the world\'s most scenic airports',
+    ],
+    itinerary: 'After an exhilarating flight to Lukla, the trek proceeds through Phakding, Namche Bazaar (acclimatization), Tengboche, Dingboche (acclimatization), Lobuche, Gorak Shep, Everest Base Camp, and Kala Patthar. The return follows a similar route with stops at lower elevations, typically ending with a flight from Lukla back to Kathmandu.',
+    included: [
+      'Experienced trekking guide',
+      'Porter service (2:1 ratio)',
+      'All meals during trek',
+      'Teahouse accommodation',
+      'Sagarmatha National Park permit',
+      'Khumbu Pasang Lhamu Rural Municipality Permit',
+      'TIMS card',
+      'First aid kit with oxygen meter',
+      'Guide and porter insurance, meals, accommodation',
+    ],
+    excluded: [
+      'Kathmandu-Lukla-Kathmandu flights',
+      'Meals in Kathmandu',
+      'Travel and emergency evacuation insurance (mandatory)',
+      'Personal expenses',
+      'Tips for guide and porters',
+      'Extra nights in Kathmandu due to flight delays',
+    ],
+    images: {
+      hero: '/images/treks/ebc-hero.jpg',
+      gallery: [
+        '/images/treks/ebc-1.jpg',
+        '/images/treks/ebc-2.jpg',
+        '/images/treks/ebc-3.jpg',
+        '/images/treks/ebc-4.jpg',
+      ],
+    },
+    featured: true,
+  },
+  {
+    id: '5',
+    slug: 'manaslu-circuit',
+    name: 'Manaslu Circuit Trek',
+    tagline: 'Discover Nepal\'s hidden gem off the beaten path',
+    duration: '13-17 days',
+    durationDays: 15,
+    difficulty: 'Challenging',
+    maxAltitude: '5,106m (Larkya La Pass)',
+    maxAltitudeMeters: 5106,
+    bestSeason: 'March-May, September-November',
+    overview: [
+      'The Manaslu Circuit Trek is one of Nepal\'s best-kept secrets, offering a true wilderness experience around the eighth highest mountain in the world, Mount Manaslu (8,163m). This restricted area trek combines spectacular mountain scenery, rich Tibetan Buddhist culture, and fewer crowds than other major circuits.',
+      'Trek through remote villages where traditional lifestyles remain unchanged for centuries. The route follows the ancient salt trading route between Nepal and Tibet, crossing the dramatic Larkya La Pass at 5,106m with breathtaking views of Manaslu, Himlung Himal, and Cheo Himal.',
+      'Experience authentic Tibetan culture, visit ancient monasteries, and enjoy pristine mountain landscapes on this challenging but incredibly rewarding adventure.',
+    ],
+    highlights: [
+      'Cross the spectacular Larkya La Pass at 5,106m',
+      'Close-up views of Mount Manaslu (8,163m)',
+      'Experience authentic Tibetan Buddhist culture and monasteries',
+      'Trek through remote, less-crowded trails',
+      'Diverse landscapes from subtropical forests to high alpine terrain',
+      'Visit traditional villages like Samagaun and Samdo',
+      'Encounter unique wildlife in the Manaslu Conservation Area',
+    ],
+    itinerary: 'The trek typically starts with a drive from Kathmandu to Soti Khola or Machha Khola. The route goes through Jagat, Deng, Namrung, Samagaun (acclimatization), Samdo, Dharamsala, Larkya La Pass, Bimthang, and ends at Dharapani where you meet the Annapurna Circuit trail. A jeep ride takes you back to Kathmandu.',
+    included: [
+      'Experienced trekking guide',
+      'Porter service (2:1 ratio)',
+      'All meals during trek',
+      'Teahouse accommodation',
+      'Manaslu Restricted Area Permit',
+      'Manaslu Conservation Area Permit',
+      'ACAP (for exit through Annapurna region)',
+      'TIMS card',
+      'First aid kit',
+      'Guide and porter insurance, meals, accommodation',
+    ],
+    excluded: [
+      'Transportation to Soti Khola and from Dharapani',
+      'Meals in Kathmandu',
+      'Travel insurance',
+      'Personal expenses',
+      'Tips for guide and porters',
+      'Emergency evacuation',
+    ],
+    images: {
+      hero: '/images/treks/manaslu-hero.jpg',
+      gallery: [
+        '/images/treks/manaslu-1.jpg',
+        '/images/treks/manaslu-2.jpg',
+        '/images/treks/manaslu-3.jpg',
+        '/images/treks/manaslu-4.jpg',
+      ],
+    },
+  },
+  {
+    id: '6',
+    slug: 'ghorepani-poon-hill',
+    name: 'Ghorepani Poon Hill Trek',
+    tagline: 'Perfect introduction to Himalayan trekking',
+    duration: '4-5 days',
+    durationDays: 5,
+    difficulty: 'Easy',
+    maxAltitude: '3,210m (Poon Hill)',
+    maxAltitudeMeters: 3210,
+    bestSeason: 'Year-round',
+    overview: [
+      'The Ghorepani Poon Hill Trek is the perfect introduction to Himalayan trekking, ideal for families, beginners, or those with limited time. Despite its shorter duration and moderate difficulty, this trek offers spectacular mountain views and rich cultural experiences.',
+      'Wake up early to witness the unforgettable sunrise from Poon Hill (3,210m), with panoramic views of Dhaulagiri, Annapurna, Machhapuchhre, and many other peaks bathed in golden light. The trek passes through beautiful rhododendron forests that bloom spectacularly in spring.',
+      'Experience the warm hospitality of the Gurung and Magar communities, stay in comfortable teahouses, and enjoy well-maintained trails suitable for trekkers of all ages.',
+    ],
+    highlights: [
+      'Spectacular sunrise views from Poon Hill viewpoint',
+      'Panoramic views of Annapurna and Dhaulagiri ranges',
+      'Walk through enchanting rhododendron forests (stunning in spring)',
+      'Visit the beautiful Gurung village of Ghandruk',
+      'Experience authentic mountain village life',
+      'Well-established teahouse trail with comfortable accommodations',
+      'Suitable for families and trekkers of all ages',
+    ],
+    itinerary: 'Starting from Nayapul (1.5 hours from Pokhara), the trek goes to Tikhedhunga/Ulleri, Ghorepani, Poon Hill for sunrise, and then to Tadapani and Ghandruk before returning to Nayapul. The route can be done in 4-5 days depending on your pace and can be extended to combine with other routes.',
+    included: [
+      'Experienced trekking guide',
+      'Porter service (2:1 ratio)',
+      'All meals during trek',
+      'Teahouse accommodation',
+      'ACAP permit',
+      'TIMS card',
+      'First aid kit',
+      'Guide and porter insurance, meals, accommodation',
+    ],
+    excluded: [
+      'Transportation to/from Nayapul',
+      'Meals in Pokhara',
+      'Travel insurance',
+      'Personal expenses',
+      'Tips for guide and porters',
+    ],
+    images: {
+      hero: '/images/treks/poonhill-hero.jpg',
+      gallery: [
+        '/images/treks/poonhill-1.jpg',
+        '/images/treks/poonhill-2.jpg',
+        '/images/treks/poonhill-3.jpg',
+        '/images/treks/poonhill-4.jpg',
+      ],
+    },
+    featured: false,
+  },
+  {
+    id: '7',
+    slug: 'upper-mustang',
+    name: 'Upper Mustang Trek',
+    tagline: 'Explore the forbidden kingdom of Lo',
+    duration: '10-12 days',
+    durationDays: 11,
+    difficulty: 'Moderate',
+    maxAltitude: '3,840m',
+    maxAltitudeMeters: 3840,
+    bestSeason: 'March-November',
+    overview: [
+      'The Upper Mustang Trek takes you to the ancient forbidden kingdom of Lo, a remote region that was closed to foreigners until 1992. This restricted area trek offers a unique journey into a preserved Tibetan Buddhist culture, dramatic desert landscapes, and ancient cave monasteries.',
+      'Trek through the rain shadow of the Himalayas, where the landscape resembles Tibet with its stark beauty of eroded cliffs, ancient walled cities, and wind-sculpted rock formations. The capital city of Lo Manthang is a living museum of medieval Tibetan culture.',
+      'This trek is special for its cultural richness and unique landscapes that are unlike anywhere else in Nepal. The region can be trekked even during monsoon season due to its location in the rain shadow.',
+    ],
+    highlights: [
+      'Explore the ancient walled city of Lo Manthang',
+      'Discover centuries-old cave monasteries and Buddhist art',
+      'Experience authentic Tibetan Buddhist culture and traditions',
+      'Trek through dramatic desert landscapes and wind-eroded cliffs',
+      'Visit the sacred Muktinath temple',
+      'Witness unique geography in the rain shadow of the Himalayas',
+      'Interact with the Lo people and their preserved traditions',
+    ],
+    itinerary: 'The trek typically starts with a flight or drive to Jomsom. From there, trek through Kagbeni (permit check), Chele, Syangboche, Ghami, Tsarang, and Lo Manthang. Explore Lo Manthang and surrounding areas, then return via a similar route or through Yara and Tangge villages. End with a visit to Muktinath before returning to Jomsom.',
+    included: [
+      'Experienced trekking guide',
+      'Porter service (2:1 ratio)',
+      'All meals during trek',
+      'Teahouse/guesthouse accommodation',
+      'Upper Mustang Restricted Area Permit',
+      'ACAP permit',
+      'TIMS card',
+      'First aid kit',
+      'Guide and porter insurance, meals, accommodation',
+    ],
+    excluded: [
+      'Jomsom flights or jeep transportation',
+      'Meals in Pokhara/Kathmandu',
+      'Travel insurance',
+      'Personal expenses',
+      'Tips for guide and porters',
+      'Monastery entrance fees',
+    ],
+    images: {
+      hero: '/images/treks/mustang-hero.jpg',
+      gallery: [
+        '/images/treks/mustang-1.jpg',
+        '/images/treks/mustang-2.jpg',
+        '/images/treks/mustang-3.jpg',
+        '/images/treks/mustang-4.jpg',
+      ],
+    },
+  },
+];
+
+// Helper functions for filtering and searching
+export function getTrekBySlug(slug: string): Trek | undefined {
+  return TREKS.find(trek => trek.slug === slug);
+}
+
+export function getFeaturedTreks(): Trek[] {
+  return TREKS.filter(trek => trek.featured);
+}
+
+export function getTreksByDifficulty(difficulty: string): Trek[] {
+  if (difficulty === 'all') return TREKS;
+  return TREKS.filter(trek => trek.difficulty === difficulty);
+}
+
+export function getTreksByDuration(duration: string): Trek[] {
+  if (duration === 'all') return TREKS;
+
+  return TREKS.filter(trek => {
+    if (duration === 'short') return trek.durationDays < 7;
+    if (duration === 'medium') return trek.durationDays >= 7 && trek.durationDays <= 12;
+    if (duration === 'long') return trek.durationDays > 12;
+    return true;
+  });
+}
+
+export function getAllTrekSlugs(): string[] {
+  return TREKS.map(trek => trek.slug);
+}
