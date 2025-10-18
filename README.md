@@ -76,12 +76,25 @@ wander-warriors/
 npm install
 ```
 
-3. Run the development server:
+3. **Set up environment variables** (for contact form):
+```bash
+cp .env.example .env.local
+```
+
+Edit `.env.local` and add your Resend API key:
+```env
+RESEND_API_KEY=re_your_api_key_here
+CONTACT_EMAIL=sherpaangdawa092@gmail.com
+```
+
+See [RESEND-SETUP.md](RESEND-SETUP.md) for detailed instructions on getting your API key.
+
+4. Run the development server:
 ```bash
 npm run dev
 ```
 
-4. Open [http://localhost:3000](http://localhost:3000) in your browser
+5. Open [http://localhost:3000](http://localhost:3000) in your browser
 
 ## Development
 

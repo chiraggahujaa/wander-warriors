@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, FormEvent } from 'react';
-import { Send } from 'lucide-react';
+import { Send, AlertCircle, Loader2 } from 'lucide-react';
 import { ContactFormData } from '@/types';
 import { TREKS } from '@/lib/treks-data';
 
@@ -17,29 +17,52 @@ export default function ContactForm() {
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsSubmitting(true);
+    setError(null);
 
-    // In a real application, you would send this data to a backend or email service
-    console.log('Form submitted:', formData);
-
-    // Show success message
-    setIsSubmitted(true);
-
-    // Reset form after 5 seconds
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        trekInterest: '',
-        numberOfPeople: 1,
-        preferredDates: '',
-        message: '',
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
       });
-    }, 5000);
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to send inquiry');
+      }
+
+      // Show success message
+      setIsSubmitted(true);
+
+      // Reset form after 5 seconds
+      setTimeout(() => {
+        setIsSubmitted(false);
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          trekInterest: '',
+          numberOfPeople: 1,
+          preferredDates: '',
+          message: '',
+        });
+      }, 5000);
+
+    } catch (err: any) {
+      console.error('Error submitting form:', err);
+      setError(err.message || 'Failed to send inquiry. Please try again or contact us via WhatsApp.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (
@@ -190,11 +213,35 @@ export default function ContactForm() {
         </div>
       </div>
 
+      {/* Error Message */}
+      {error && (
+        <div className="mt-6 p-4 bg-red-50 border-2 border-red-200 rounded-lg flex items-start gap-3">
+          <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
+          <div>
+            <p className="text-red-800 font-semibold mb-1">Failed to Send Inquiry</p>
+            <p className="text-red-700 text-sm">{error}</p>
+          </div>
+        </div>
+      )}
+
       {/* Submit Button */}
       <div className="mt-6">
-        <button type="submit" className="btn-primary w-full md:w-auto inline-flex items-center gap-2">
-          <Send className="w-5 h-5" />
-          Send Inquiry
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          className="btn-primary w-full md:w-auto inline-flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          {isSubmitting ? (
+            <>
+              <Loader2 className="w-5 h-5 animate-spin" />
+              Sending...
+            </>
+          ) : (
+            <>
+              <Send className="w-5 h-5" />
+              Send Inquiry
+            </>
+          )}
         </button>
       </div>
 
