@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
-import { MessageCircle, Phone, Mail, MapPin, Clock } from 'lucide-react';
+import { MessageCircle, Phone, Mail, MapPin, Clock, Instagram } from 'lucide-react';
 import ContactForm from '@/components/ContactForm';
-import { COMPANY_INFO, WHATSAPP_LINK } from '@/lib/constants';
+import { COMPANY_INFO, WHATSAPP_LINK, INSTAGRAM_LINK } from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: 'Contact Us - Wander Warriors Trekking',
@@ -28,7 +28,7 @@ export default function ContactPage() {
       {/* Contact Options */}
       <section className="section-padding bg-white">
         <div className="container-custom">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-16">
             {/* WhatsApp */}
             <a
               href={WHATSAPP_LINK}
@@ -73,8 +73,25 @@ export default function ContactPage() {
               </div>
               <h3 className="text-lg font-bold text-gray-900 mb-2">Email</h3>
               <p className="text-gray-600 text-sm mb-2">Send us an email</p>
-              <p className="text-mountain-blue font-semibold break-all">
+              <p className="text-mountain-blue font-semibold break-all text-xs">
                 {COMPANY_INFO.email}
+              </p>
+            </a>
+
+            {/* Instagram */}
+            <a
+              href={INSTAGRAM_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="card p-6 hover:shadow-xl transition-all duration-300 hover:border-pink-500 border-2 border-transparent group"
+            >
+              <div className="w-14 h-14 bg-pink-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-pink-200 transition-colors">
+                <Instagram className="w-7 h-7 text-pink-500" />
+              </div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Instagram</h3>
+              <p className="text-gray-600 text-sm mb-2">Follow our adventures</p>
+              <p className="text-pink-500 font-semibold">
+                @{COMPANY_INFO.instagram}
               </p>
             </a>
 

@@ -5,11 +5,14 @@ export const COMPANY_INFO: CompanyInfo = {
   tagline: 'Your Trusted Companions in the Himalayas',
   phone: '+977 9864261982',
   whatsapp: '+977 9864261982',
-  email: 'info@wanderwarriors.com',
+  email: 'sherpaangdawa092@gmail.com',
+  instagram: 'warriorswander',
   location: 'Nepal',
 };
 
 export const WHATSAPP_LINK = `https://wa.me/9779864261982`;
+
+export const INSTAGRAM_LINK = `https://instagram.com/${COMPANY_INFO.instagram}`;
 
 export const STATS: Stats[] = [
   {

@@ -158,7 +158,7 @@ export default function HomePage() {
           </h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">
             Contact us on WhatsApp to discuss your trekking plans and get a
-            customized itinerary for your Himalayan journey.
+            customized itinerary for your Himalayan journey. We offer complete trek packages or freelance guide services only.
           </p>
 
           <a

@@ -53,7 +53,9 @@ export default function AboutPage() {
                 We are a team of experienced trekking professionals based in Nepal,
                 dedicated to providing exceptional Himalayan adventures. With years of
                 combined experience navigating the world's highest mountains, we bring
-                expertise, passion, and local knowledge to every trek we guide.
+                expertise, passion, and local knowledge to every trek we guide. Whether you
+                need a complete trek package or just an experienced freelance guide, we're
+                here to make your journey unforgettable.
               </p>
 
               <p className="text-lg leading-relaxed">

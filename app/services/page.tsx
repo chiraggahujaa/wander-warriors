@@ -46,10 +46,18 @@ export default function ServicesPage() {
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Comprehensive Trekking Services
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-6">
               From expert guides to complete trek management, we provide all the
               services you need for a safe and memorable journey in the Himalayas.
             </p>
+            <div className="inline-block bg-adventure-orange/10 border-2 border-adventure-orange rounded-lg px-6 py-4 max-w-3xl">
+              <p className="text-lg font-semibold text-gray-900 mb-2">
+                ✨ Flexible Service Options Available
+              </p>
+              <p className="text-gray-700">
+                Choose from <strong>complete trek packages</strong> with full management, or hire just an <strong>experienced freelance guide</strong> for your independent trek. We adapt to your needs and budget!
+              </p>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">

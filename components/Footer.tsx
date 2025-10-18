@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import { MessageCircle, Mail, MapPin, Phone } from 'lucide-react';
-import { COMPANY_INFO, WHATSAPP_LINK } from '@/lib/constants';
+import { MessageCircle, Mail, MapPin, Phone, Instagram } from 'lucide-react';
+import { COMPANY_INFO, WHATSAPP_LINK, INSTAGRAM_LINK } from '@/lib/constants';
 import { getFeaturedTreks } from '@/lib/treks-data';
 
 export default function Footer() {
@@ -128,6 +128,19 @@ export default function Footer() {
                 </div>
               </li>
               <li className="flex items-start gap-2">
+                <Instagram className="w-5 h-5 text-pink-500 flex-shrink-0 mt-0.5" />
+                <div>
+                  <a
+                    href={INSTAGRAM_LINK}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm hover:text-pink-500 transition-colors"
+                  >
+                    @{COMPANY_INFO.instagram}
+                  </a>
+                </div>
+              </li>
+              <li className="flex items-start gap-2">
                 <MapPin className="w-5 h-5 text-adventure-orange flex-shrink-0 mt-0.5" />
                 <div>
                   <span className="text-sm">{COMPANY_INFO.location}</span>
@@ -138,13 +151,44 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-gray-800 mt-12 pt-8 text-center">
-          <p className="text-sm">
-            &copy; {currentYear} {COMPANY_INFO.name}. All rights reserved.
-          </p>
-          <p className="text-sm mt-2 text-gray-400">
-            Professional Trekking Guide Services in Nepal
-          </p>
+        <div className="border-t border-gray-800 mt-12 pt-8">
+          <div className="text-center mb-4">
+            <p className="text-sm">
+              &copy; {currentYear} {COMPANY_INFO.name}. All rights reserved.
+            </p>
+            <p className="text-sm mt-2 text-gray-400">
+              Professional Trekking Guide Services in Nepal
+            </p>
+          </div>
+
+          {/* Social Media Links */}
+          <div className="flex justify-center gap-6">
+            <a
+              href={WHATSAPP_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-nature-green transition-colors"
+              aria-label="WhatsApp"
+            >
+              <MessageCircle className="w-6 h-6" />
+            </a>
+            <a
+              href={INSTAGRAM_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-pink-500 transition-colors"
+              aria-label="Instagram"
+            >
+              <Instagram className="w-6 h-6" />
+            </a>
+            <a
+              href={`mailto:${COMPANY_INFO.email}`}
+              className="text-gray-400 hover:text-adventure-orange transition-colors"
+              aria-label="Email"
+            >
+              <Mail className="w-6 h-6" />
+            </a>
+          </div>
         </div>
       </div>
     </footer>

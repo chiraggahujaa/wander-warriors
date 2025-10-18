@@ -49,6 +49,7 @@ export interface CompanyInfo {
   phone: string;
   whatsapp: string;
   email: string;
+  instagram: string;
   location: string;
 }
 
