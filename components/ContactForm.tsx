@@ -6,7 +6,7 @@ import { ContactFormData } from '@/types';
 import { TREKS } from '@/lib/treks-data';
 
 export default function ContactForm() {
-  const [formData, setFormData] = useState<ContactFormData>({
+  const [formData, setFormData] = useState<ContactFormData & { numberOfPeople: number | string }>({
     name: '',
     email: '',
     phone: '',
@@ -26,12 +26,20 @@ export default function ContactForm() {
     setError(null);
 
     try {
+      // Ensure numberOfPeople is a number before sending
+      const dataToSend = {
+        ...formData,
+        numberOfPeople: typeof formData.numberOfPeople === 'string'
+          ? parseInt(formData.numberOfPeople) || 1
+          : formData.numberOfPeople,
+      };
+
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(dataToSend),
       });
 
       const data = await response.json();
@@ -71,7 +79,7 @@ export default function ContactForm() {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [name]: name === 'numberOfPeople' ? parseInt(value) || 1 : value,
+      [name]: name === 'numberOfPeople' ? (value === '' ? '' : parseInt(value)) : value,
     }));
   };
 
