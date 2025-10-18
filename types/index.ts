@@ -2,6 +2,24 @@ export type DifficultyLevel = 'Easy' | 'Moderate' | 'Challenging';
 
 export type Season = 'Year-round' | 'March-May' | 'September-November' | 'March-November' | 'October-November' | 'March-May, September-November';
 
+export interface ItineraryDay {
+  day: number;
+  title: string;
+  description: string;
+  altitude?: string;
+  duration?: string;
+  meals?: string;
+  accommodation?: string;
+}
+
+export interface ItineraryOption {
+  id: string;
+  name: string;
+  days: number;
+  description: string;
+  itinerary: ItineraryDay[];
+}
+
 export interface Trek {
   id: string;
   slug: string;
@@ -15,7 +33,8 @@ export interface Trek {
   bestSeason: Season;
   overview: string[];
   highlights: string[];
-  itinerary: string;
+  itinerary: string; // Keep for backward compatibility
+  itineraryOptions: ItineraryOption[]; // New detailed itineraries
   included: string[];
   excluded: string[];
   images: {

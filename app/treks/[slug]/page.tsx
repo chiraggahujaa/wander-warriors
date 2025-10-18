@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Calendar, Mountain, TrendingUp, Sun, Check, X, MessageCircle, ArrowLeft } from 'lucide-react';
 import { getTrekBySlug, getAllTrekSlugs } from '@/lib/treks-data';
 import { WHATSAPP_LINK } from '@/lib/constants';
+import ItineraryTabs from '@/components/ItineraryTabs';
 
 interface PageProps {
   params: {
@@ -183,19 +184,21 @@ export default function TrekDetailPage({ params }: PageProps) {
                 </ul>
               </div>
 
-              {/* Itinerary */}
+              {/* Detailed Day-by-Day Itinerary */}
               <div>
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Trek Itinerary
+                  Detailed Day-by-Day Itinerary
                 </h2>
-                <div className="card p-6">
-                  <p className="text-gray-700 leading-relaxed">{trek.itinerary}</p>
-                  <p className="mt-4 text-sm text-gray-600">
-                    Note: This is a general itinerary outline. The exact itinerary can
-                    be customized based on your preferences, fitness level, and time
-                    available.
-                  </p>
-                </div>
+                {trek.itineraryOptions && trek.itineraryOptions.length > 0 ? (
+                  <ItineraryTabs itineraryOptions={trek.itineraryOptions} />
+                ) : (
+                  <div className="card p-6">
+                    <p className="text-gray-700 leading-relaxed">{trek.itinerary}</p>
+                    <p className="mt-4 text-sm text-gray-600">
+                      Note: This is a general itinerary outline. Contact us for a detailed day-by-day breakdown.
+                    </p>
+                  </div>
+                )}
               </div>
 
               {/* What's Included/Excluded */}

@@ -1,5 +1,4 @@
 import { Trek } from '@/types';
-import { allTrekItineraries } from './all-trek-itineraries';
 
 export const TREKS: Trek[] = [
   {
@@ -55,7 +54,6 @@ export const TREKS: Trek[] = [
         '/images/treks/langtang-4.jpg',
       ],
     },
-    itineraryOptions: allTrekItineraries['langtang-trek'],
     featured: true,
   },
   {
@@ -111,7 +109,6 @@ export const TREKS: Trek[] = [
         '/images/treks/abc-4.jpg',
       ],
     },
-    itineraryOptions: allTrekItineraries['annapurna-base-camp'],
     featured: true,
   },
   {
@@ -166,7 +163,6 @@ export const TREKS: Trek[] = [
         '/images/treks/circuit-4.jpg',
       ],
     },
-    itineraryOptions: allTrekItineraries['annapurna-circuit'],
     featured: true,
   },
   {
@@ -223,7 +219,6 @@ export const TREKS: Trek[] = [
         '/images/treks/ebc-4.jpg',
       ],
     },
-    itineraryOptions: allTrekItineraries['everest-base-camp'],
     featured: true,
   },
   {
@@ -281,7 +276,6 @@ export const TREKS: Trek[] = [
         '/images/treks/manaslu-4.jpg',
       ],
     },
-    itineraryOptions: allTrekItineraries['manaslu-circuit'],
   },
   {
     id: '6',
@@ -335,7 +329,6 @@ export const TREKS: Trek[] = [
         '/images/treks/poonhill-4.jpg',
       ],
     },
-    itineraryOptions: allTrekItineraries['ghorepani-poon-hill'],
     featured: false,
   },
   {
@@ -392,7 +385,6 @@ export const TREKS: Trek[] = [
         '/images/treks/mustang-4.jpg',
       ],
     },
-    itineraryOptions: allTrekItineraries['upper-mustang'],
   },
 ];
 
