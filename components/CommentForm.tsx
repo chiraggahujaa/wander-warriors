@@ -2,13 +2,15 @@
 
 import { useState, FormEvent } from 'react';
 import { Send, CheckCircle, AlertCircle } from 'lucide-react';
+import { GoogleReCaptchaProvider, useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 
 interface CommentFormProps {
   trekSlug: string;
   onCommentSubmitted?: () => void;
 }
 
-export default function CommentForm({ trekSlug, onCommentSubmitted }: CommentFormProps) {
+function CommentFormInner({ trekSlug, onCommentSubmitted }: CommentFormProps) {
+  const { executeRecaptcha } = useGoogleReCaptcha();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -33,12 +35,26 @@ export default function CommentForm({ trekSlug, onCommentSubmitted }: CommentFor
     setSubmitStatus({ type: null, message: '' });
 
     try {
+      // Get reCAPTCHA token if available
+      let recaptchaToken = '';
+      if (executeRecaptcha) {
+        try {
+          recaptchaToken = await executeRecaptcha('submit_comment');
+        } catch (error) {
+          console.warn('reCAPTCHA failed:', error);
+          // Continue without reCAPTCHA if it fails
+        }
+      }
+
       const response = await fetch(`/api/comments/${trekSlug}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          recaptchaToken,
+        }),
       });
 
       const data = await response.json();
@@ -55,7 +71,7 @@ export default function CommentForm({ trekSlug, onCommentSubmitted }: CommentFor
       // Reset form
       setFormData({ name: '', email: '', comment: '', honeypot: '' });
 
-      // Notify parent component
+      // Notify parent component to refresh comments
       if (onCommentSubmitted) {
         onCommentSubmitted();
       }
@@ -220,7 +236,7 @@ export default function CommentForm({ trekSlug, onCommentSubmitted }: CommentFor
             </p>
             {submitStatus.type === 'success' && (
               <p className="text-xs text-gray-600 mt-1">
-                Your comment is pending approval and will appear soon.
+                Your comment has been posted and will appear shortly!
               </p>
             )}
           </div>
@@ -230,10 +246,26 @@ export default function CommentForm({ trekSlug, onCommentSubmitted }: CommentFor
       {/* Info Note */}
       <div className="mt-4 p-3 bg-gray-50 rounded-lg border border-gray-200">
         <p className="text-xs text-gray-600">
-          <strong>Note:</strong> Comments are moderated and will be published after review. Please
-          be respectful and constructive. You can submit one comment every 30 minutes.
+          <strong>Note:</strong> Please be respectful and constructive in your comments. Rate limit: one comment every 30 minutes.
         </p>
       </div>
     </div>
+  );
+}
+
+// Wrapper component with reCAPTCHA provider
+export default function CommentForm({ trekSlug, onCommentSubmitted }: CommentFormProps) {
+  const recaptchaSiteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
+
+  // If reCAPTCHA site key is not configured, render form without it
+  if (!recaptchaSiteKey) {
+    return <CommentFormInner trekSlug={trekSlug} onCommentSubmitted={onCommentSubmitted} />;
+  }
+
+  // Otherwise, wrap with reCAPTCHA provider
+  return (
+    <GoogleReCaptchaProvider reCaptchaKey={recaptchaSiteKey}>
+      <CommentFormInner trekSlug={trekSlug} onCommentSubmitted={onCommentSubmitted} />
+    </GoogleReCaptchaProvider>
   );
 }

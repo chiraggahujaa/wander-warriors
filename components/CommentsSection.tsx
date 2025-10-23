@@ -44,9 +44,8 @@ export default function CommentsSection({ trekSlug, trekName }: CommentsSectionP
   }, [trekSlug]);
 
   const handleCommentSubmitted = () => {
-    // Optionally refresh comments after submission
-    // Note: New comment won't show until approved
-    fetchComments();
+    // Refresh comments after submission to show the new comment
+    setTimeout(() => fetchComments(), 500);
   };
 
   const formatDate = (dateString: string) => {

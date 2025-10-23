@@ -1,7 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getApprovedComments, createComment, checkRateLimit, hashIP } from '@/lib/airtable';
+import {
+  getComments,
+  createComment,
+  checkRateLimit,
+  hashIP,
+  detectSpam,
+  hasExcessiveLinks,
+} from '@/lib/supabase';
 
-// GET /api/comments/[slug] - Fetch approved comments for a trek
+// GET /api/comments/[slug] - Fetch all comments for a trek
 export async function GET(
   request: NextRequest,
   { params }: { params: { slug: string } }
@@ -16,11 +23,16 @@ export async function GET(
       );
     }
 
-    const comments = await getApprovedComments(slug);
+    const comments = await getComments(slug);
 
     return NextResponse.json(
       { comments, count: comments.length },
-      { status: 200 }
+      {
+        status: 200,
+        headers: {
+          'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=120',
+        },
+      }
     );
   } catch (error: any) {
     console.error('Error fetching comments:', error);
@@ -47,9 +59,9 @@ export async function POST(
     }
 
     const body = await request.json();
-    const { name, email, comment, honeypot } = body;
+    const { name, email, comment, honeypot, recaptchaToken } = body;
 
-    // Spam prevention: Honeypot field should be empty
+    // Spam prevention 1: Honeypot field should be empty
     if (honeypot && honeypot.trim() !== '') {
       console.log('Honeypot triggered - potential spam');
       return NextResponse.json(
@@ -112,27 +124,72 @@ export async function POST(
       );
     }
 
+    // Spam prevention 2: Verify reCAPTCHA token
+    if (process.env.RECAPTCHA_SECRET_KEY && recaptchaToken) {
+      const recaptchaResponse = await fetch(
+        'https://www.google.com/recaptcha/api/siteverify',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: `secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${recaptchaToken}`,
+        }
+      );
+
+      const recaptchaData = await recaptchaResponse.json();
+
+      if (!recaptchaData.success || recaptchaData.score < 0.5) {
+        console.log('reCAPTCHA verification failed:', recaptchaData);
+        return NextResponse.json(
+          { error: 'reCAPTCHA verification failed. Please try again.' },
+          { status: 400 }
+        );
+      }
+    }
+
+    // Spam prevention 3: Content-based spam detection
+    if (detectSpam(comment)) {
+      console.log('Spam pattern detected in comment');
+      return NextResponse.json(
+        { error: 'Comment contains prohibited content. Please review and try again.' },
+        { status: 400 }
+      );
+    }
+
+    // Spam prevention 4: Check for excessive links
+    if (hasExcessiveLinks(comment)) {
+      return NextResponse.json(
+        { error: 'Too many links in comment. Maximum 2 links allowed.' },
+        { status: 400 }
+      );
+    }
+
     // Get client IP for rate limiting
-    const ip = request.headers.get('x-forwarded-for') ||
-                request.headers.get('x-real-ip') ||
-                'unknown';
+    const ip =
+      request.headers.get('x-forwarded-for')?.split(',')[0].trim() ||
+      request.headers.get('x-real-ip') ||
+      'unknown';
     const ipHash = hashIP(ip);
 
-    // Check rate limit
+    // Spam prevention 5: Rate limiting
     const canSubmit = await checkRateLimit(ipHash);
     if (!canSubmit) {
       return NextResponse.json(
-        { error: 'You can only submit one comment every 30 minutes. Please try again later.' },
+        {
+          error:
+            'You can only submit one comment every 30 minutes. Please try again later.',
+        },
         { status: 429 }
       );
     }
 
-    // Create comment in Airtable
+    // Create comment in Supabase
     const result = await createComment(
       slug,
       name.trim(),
-      comment.trim(),
       email.trim(),
+      comment.trim(),
       ipHash
     );
 
@@ -146,7 +203,8 @@ export async function POST(
     return NextResponse.json(
       {
         success: true,
-        message: 'Thank you for your feedback! Your comment will be visible once approved by our team.',
+        message:
+          'Thank you for your feedback! Your comment has been posted successfully.',
       },
       { status: 201 }
     );
