@@ -58,10 +58,41 @@ export async function POST(
       );
     }
 
-    // Validate required fields
+    // Validate required fields: name, email, and comment
+    if (!name || name.trim().length === 0) {
+      return NextResponse.json(
+        { error: 'Name is required' },
+        { status: 400 }
+      );
+    }
+
+    if (!email || email.trim().length === 0) {
+      return NextResponse.json(
+        { error: 'Email is required' },
+        { status: 400 }
+      );
+    }
+
     if (!comment || comment.trim().length === 0) {
       return NextResponse.json(
         { error: 'Comment is required' },
+        { status: 400 }
+      );
+    }
+
+    // Validate name length
+    if (name.trim().length > 50) {
+      return NextResponse.json(
+        { error: 'Name must be less than 50 characters' },
+        { status: 400 }
+      );
+    }
+
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email.trim())) {
+      return NextResponse.json(
+        { error: 'Invalid email format' },
         { status: 400 }
       );
     }
@@ -79,25 +110,6 @@ export async function POST(
         { error: 'Comment must be less than 500 characters' },
         { status: 400 }
       );
-    }
-
-    // Validate name if provided
-    if (name && name.length > 50) {
-      return NextResponse.json(
-        { error: 'Name must be less than 50 characters' },
-        { status: 400 }
-      );
-    }
-
-    // Validate email format if provided
-    if (email && email.trim().length > 0) {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(email)) {
-        return NextResponse.json(
-          { error: 'Invalid email format' },
-          { status: 400 }
-        );
-      }
     }
 
     // Get client IP for rate limiting
@@ -118,9 +130,9 @@ export async function POST(
     // Create comment in Airtable
     const result = await createComment(
       slug,
-      name?.trim() || 'Anonymous',
+      name.trim(),
       comment.trim(),
-      email?.trim(),
+      email.trim(),
       ipHash
     );
 

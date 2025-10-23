@@ -70,7 +70,11 @@ export default function CommentForm({ trekSlug, onCommentSubmitted }: CommentFor
   };
 
   const charCount = formData.comment.length;
-  const isCommentValid = charCount >= 10 && charCount <= 500;
+  const isFormValid =
+    formData.name.trim().length > 0 &&
+    formData.email.trim().length > 0 &&
+    charCount >= 10 &&
+    charCount <= 500;
 
   return (
     <div className="bg-white rounded-lg border border-gray-200 p-6 shadow-sm">
@@ -80,10 +84,10 @@ export default function CommentForm({ trekSlug, onCommentSubmitted }: CommentFor
       </p>
 
       <form onSubmit={handleSubmit} className="space-y-4">
-        {/* Name Field (Optional) */}
+        {/* Name Field (Required) */}
         <div>
           <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
-            Name <span className="text-gray-400">(Optional - defaults to Anonymous)</span>
+            Name <span className="text-red-500">*</span>
           </label>
           <input
             type="text"
@@ -91,16 +95,18 @@ export default function CommentForm({ trekSlug, onCommentSubmitted }: CommentFor
             name="name"
             value={formData.name}
             onChange={handleChange}
+            required
             maxLength={50}
             placeholder="Your name"
             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-adventure-orange focus:border-transparent transition-all"
           />
         </div>
 
-        {/* Email Field (Optional) */}
+        {/* Email Field (Required) */}
         <div>
           <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-            Email <span className="text-gray-400">(Optional - not displayed publicly)</span>
+            Email <span className="text-red-500">*</span>
+            <span className="text-gray-400 text-xs ml-1">(not displayed publicly)</span>
           </label>
           <input
             type="email"
@@ -108,6 +114,7 @@ export default function CommentForm({ trekSlug, onCommentSubmitted }: CommentFor
             name="email"
             value={formData.email}
             onChange={handleChange}
+            required
             placeholder="your.email@example.com"
             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-adventure-orange focus:border-transparent transition-all"
           />
@@ -143,7 +150,7 @@ export default function CommentForm({ trekSlug, onCommentSubmitted }: CommentFor
               {charCount}/500 characters
               {charCount < 10 && ` (minimum 10)`}
             </span>
-            {isCommentValid && (
+            {isFormValid && (
               <span className="text-sm text-nature-green flex items-center gap-1">
                 <CheckCircle className="w-4 h-4" />
                 Ready to submit
@@ -172,7 +179,7 @@ export default function CommentForm({ trekSlug, onCommentSubmitted }: CommentFor
         {/* Submit Button */}
         <button
           type="submit"
-          disabled={isSubmitting || !isCommentValid}
+          disabled={isSubmitting || !isFormValid}
           className="w-full bg-gradient-to-r from-adventure-orange to-mountain-blue text-white font-semibold py-3 px-6 rounded-lg hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center justify-center gap-2"
         >
           {isSubmitting ? (

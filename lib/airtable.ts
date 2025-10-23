@@ -77,7 +77,7 @@ export async function createComment(
   trekSlug: string,
   name: string,
   comment: string,
-  email?: string,
+  email: string,
   ipHash?: string
 ): Promise<{ success: boolean; error?: string }> {
   if (!AIRTABLE_API_KEY || !AIRTABLE_BASE_ID) {
@@ -99,8 +99,8 @@ export async function createComment(
           {
             fields: {
               trek_slug: trekSlug,
-              name: name || 'Anonymous',
-              email: email || '',
+              name: name,
+              email: email,
               comment: comment,
               status: 'pending', // All comments start as pending
               ip_hash: ipHash || '',
