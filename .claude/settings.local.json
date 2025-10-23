@@ -18,7 +18,8 @@
       "Bash(find:*)",
       "Bash(for trek in abc circuit ebc langtang manaslu mustang poonhill)",
       "Bash(done)",
-      "Bash(UNSPLASH_ACCESS_KEY=WjcTtLOiZ7RuaOLj07pAQkh45T7eMI_mo37unu0BYHQ node:*)"
+      "Bash(UNSPLASH_ACCESS_KEY=WjcTtLOiZ7RuaOLj07pAQkh45T7eMI_mo37unu0BYHQ node:*)",
+      "Bash(UNSPLASH_ACCESS_KEY=MiQY-RQCZmFCgg8im_WnjoEUah7pKmsuDaEAHMbCN68 node:*)"
     ],
     "deny": [],
     "ask": []

@@ -90,3 +90,20 @@ export interface WhyChooseUs {
   description: string;
   icon: string; // Lucide icon name
 }
+
+export interface Comment {
+  id: string;
+  trek_slug: string;
+  name: string;
+  email?: string;
+  comment: string;
+  status: 'pending' | 'approved' | 'spam';
+  created_at: string;
+}
+
+export interface CommentFormData {
+  name: string;
+  email: string;
+  comment: string;
+  honeypot: string; // Spam trap field
+}

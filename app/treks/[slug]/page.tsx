@@ -7,6 +7,7 @@ import { getTrekBySlug, getAllTrekSlugs } from '@/lib/treks-data';
 import { WHATSAPP_LINK } from '@/lib/constants';
 import ItineraryTabs from '@/components/ItineraryTabs';
 import PricingTable from '@/components/PricingTable';
+import CommentsSection from '@/components/CommentsSection';
 
 interface PageProps {
   params: {
@@ -325,6 +326,9 @@ export default function TrekDetailPage({ params }: PageProps) {
           </p>
         </div>
       </section>
+
+      {/* Comments Section */}
+      <CommentsSection trekSlug={trek.slug} trekName={trek.name} />
     </>
   );
 }
