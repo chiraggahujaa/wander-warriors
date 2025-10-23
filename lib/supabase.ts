@@ -1,18 +1,44 @@
-import { createClient } from '@supabase/supabase-js';
+import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import { Comment } from '@/types';
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
+let supabaseInstance: SupabaseClient | null = null;
 
-// Create a single supabase client for interacting with your database
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+/**
+ * Get or create Supabase client (lazy initialization)
+ * This prevents build-time errors when environment variables aren't set
+ */
+function getSupabaseClient(): SupabaseClient {
+  if (supabaseInstance) {
+    return supabaseInstance;
+  }
+
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+  if (!supabaseUrl || !supabaseAnonKey) {
+    throw new Error(
+      'Missing Supabase environment variables. Please set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY'
+    );
+  }
+
+  supabaseInstance = createClient(supabaseUrl, supabaseAnonKey);
+  return supabaseInstance;
+}
+
+// Export for backward compatibility (but use getSupabaseClient internally)
+export const supabase = {
+  get client() {
+    return getSupabaseClient();
+  }
+};
 
 /**
  * Fetch all comments for a specific trek (sorted by newest first)
  */
 export async function getComments(trekSlug: string): Promise<Comment[]> {
   try {
-    const { data, error } = await supabase
+    const client = getSupabaseClient();
+    const { data, error } = await client
       .from('comments')
       .select('*')
       .eq('trek_slug', trekSlug)
@@ -49,7 +75,8 @@ export async function createComment(
   ipHash?: string
 ): Promise<{ success: boolean; error?: string }> {
   try {
-    const { error } = await supabase.from('comments').insert([
+    const client = getSupabaseClient();
+    const { error } = await client.from('comments').insert([
       {
         trek_slug: trekSlug,
         name: name.trim(),
@@ -96,10 +123,11 @@ export function hashIP(ip: string): string {
  */
 export async function checkRateLimit(ipHash: string): Promise<boolean> {
   try {
+    const client = getSupabaseClient();
     // Check if IP has submitted in last 30 minutes
     const thirtyMinutesAgo = new Date(Date.now() - 30 * 60 * 1000).toISOString();
 
-    const { data, error } = await supabase
+    const { data, error } = await client
       .from('comments')
       .select('id')
       .eq('ip_hash', ipHash)
