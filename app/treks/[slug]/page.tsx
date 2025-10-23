@@ -6,6 +6,7 @@ import { Calendar, Mountain, TrendingUp, Sun, Check, X, MessageCircle, ArrowLeft
 import { getTrekBySlug, getAllTrekSlugs } from '@/lib/treks-data';
 import { WHATSAPP_LINK } from '@/lib/constants';
 import ItineraryTabs from '@/components/ItineraryTabs';
+import PricingTable from '@/components/PricingTable';
 
 interface PageProps {
   params: {
@@ -200,6 +201,16 @@ export default function TrekDetailPage({ params }: PageProps) {
                   </div>
                 )}
               </div>
+
+              {/* Pricing */}
+              {trek.pricing && trek.pricing.length > 0 && (
+                <div>
+                  <h2 className="text-3xl font-bold text-gray-900 mb-6">
+                    Pricing
+                  </h2>
+                  <PricingTable pricing={trek.pricing} />
+                </div>
+              )}
 
               {/* What's Included/Excluded */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

@@ -20,6 +20,11 @@ export interface ItineraryOption {
   itinerary: ItineraryDay[];
 }
 
+export interface PricingTier {
+  groupSize: string;
+  pricePerPerson: number;
+}
+
 export interface Trek {
   id: string;
   slug: string;
@@ -35,6 +40,7 @@ export interface Trek {
   highlights: string[];
   itinerary: string; // Keep for backward compatibility
   itineraryOptions: ItineraryOption[]; // New detailed itineraries
+  pricing?: PricingTier[]; // Pricing tiers by group size
   included: string[];
   excluded: string[];
   images: {

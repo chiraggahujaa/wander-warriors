@@ -12,7 +12,13 @@
       "Bash(git add:*)",
       "Bash(git commit:*)",
       "Bash(git push:*)",
-      "Bash(npm install:*)"
+      "Bash(npm install:*)",
+      "Bash(node scripts/download-images.js:*)",
+      "Bash(node scripts/download-remaining-fixed.js:*)",
+      "Bash(find:*)",
+      "Bash(for trek in abc circuit ebc langtang manaslu mustang poonhill)",
+      "Bash(done)",
+      "Bash(UNSPLASH_ACCESS_KEY=WjcTtLOiZ7RuaOLj07pAQkh45T7eMI_mo37unu0BYHQ node:*)"
     ],
     "deny": [],
     "ask": []
